@@ -1,0 +1,158 @@
+{% for error in errors %}<div class="message message-error">{{ error }}</div>{% endfor %}
+<div class="message"><strong>You must set all of these settings!</strong><br/>
+  Failing to do so, will throw an error, with the exception for
+  <strong><tt>Safe Contents</tt></strong> and
+  <strong><tt>Channel</tt></strong>.<br/>
+  Most of the values you need to put here will be <em><tt>copy/paste</tt></em>'ed
+  from the code that Google AdSense For Search gives you, pay attention to
+  that.<br/>
+  <b>Failing to do so, might compromise your commitment with Google
+  AdSense and the policy that google obliges you to follow</b>.
+</div>
+<div class="message">In order to get the right code to
+  <em><tt>copy/paste</tt></em> in this plugin, <b>make sure</b> you specify
+  that you want to <em>"Open results within my own site".</em><br/>
+  <b>This IS Important!!!</b> Not doing this will probably make the results
+  <tt>IFRAME</tt> not show up.</div>
+<div class="message"><strong>I here by state that I won't be held responsible
+  for breaking your Google AdSense policy because you're using a plugin I
+  coded. Yet, all attempts were made to make sure the resulting code is exactly
+  like the one Google gives us.<br/>
+  Use At Your Own Risk!</strong></div>
+<form action="" method="post">
+  <dl>
+    <dt>{% trans "Client ID" %}</dt>
+    <dd>{{ h.input_field('client', form.client, size=40) }}
+    <div class="message message-configure">This will be your client ID.<br/>
+      From the following example code:<pre>{% filter escape -%}
+        <input type="hidden" name="client" value="pub-0000000000000000"></input>
+      {%- endfilter %}</pre>
+      Your cliend id would be <b>pub-0000000000000000</b>.
+    </div></dd>
+    <dt>{% trans "Channel" %}</dt>
+    <dd>{{ h.input_field('channel', form.channel) }}
+    <div class="message message-configure">This is not a mandatory field.<br/>
+      If you have chosen a channel when getting your code from google, you
+      should have something like:<pre>{% filter escape -%}
+        <input type="hidden" name="channel" value="0000000000"></input>
+      {%- endfilter %}</pre>
+      The value you'd put on the box would be <b>0000000000</b>.
+    </div></dd>
+    <dt>{% trans "Safe Contents" %}</dt>
+    <dd>{{ h.checkbox('safe_contents', form.safe_contents) }}
+    <div class="message message-configure">SafeSearch (English only)<br/>
+      With SafeSearch, sites and web pages containing adult-themed and explicit
+      sexual content are excluded from web search results.</div></dd>
+    <dt>{% trans "Background Color" %}</dt>
+    <dd><select name="background">
+    {%- for value in ('white', 'black', 'grey') %}
+      <option value="{{ value|e(true) }}"{% if value == form.background
+        %} selected{% endif %}>{{ value|e }}</option>
+    {%- endfor %}
+    </select>
+    <div class="message message-configure">Google Adsense For Search provides
+      three flavours for your search box.<br/>Choose one of:<br/>
+      <ul>
+        <li>White</li>
+        <li>Black</li>
+        <li>Grey</li>
+      </ul></div></dd>
+    <dt>Input Search Field Size</dt>
+    <dd>{{ h.input_field('input_field_size', form.input_field_size, size=5) }}
+    <div class="message message-configure">This is the size(number of chars)
+      for the search string input field. Google's default is 31.</div></dd>
+    <dt>{% trans "Forid" %}</dt>
+    <dd>{{ h.input_field('forid', form.forid, size=5) }}
+    <div class="message message-configure">Don't know what this is, but,
+      considering the following example:<pre>{% filter escape -%}
+        <input type="hidden" name="forid" value="1"></input>
+      {%- endfilter %}</pre>
+      You would put <b>1</b> in the box.</div></dd>
+    <dt>{% trans "COF" %}</dt>
+    <dd>{{ h.input_field('cof', form.cof, size=100) }}
+    <div class="message message-configure">This is the colours scheme you choose
+      for the IFRAME showing the results.<br/>
+      Considering the following example:<pre syntax="html">{% filter escape -%}
+        <input type="hidden" name="cof" value="GALT:#FF0000;GL:1;DIV:#880309;VLC:900000;"></input>
+      {%- endfilter %}</pre>
+      You would put <b>GALT:#FF0000;GL:1;DIV:#880309;VLC:900000;</b> in the box.<br/>
+      <em>The value shown in the example has been shortened for
+      readability</em>.<br/>
+      <b>Extremely Important</b>: <b>make sure</b> you don't forget to specify
+      that you want to <em>"Open results within my own site" like said
+      above.</em></div></dd>
+    <dt>SBI</dt>
+    <dd>{{ h.input_field('sbi', form.sbi, size=40) }}
+    <div class="message message-configure">This is the message shown to users
+      using a non graphical browser(I think).<br/>
+      Considering the following example:<pre>{% filter escape -%}
+        <label for="sbi" style="display: none">Enter your search terms</label>
+      {%- endfilter %}</pre>
+      You would put <b>Enter your search tems</b> in the box.</div></dd>
+    <dt>SBB Label</dt>
+    <dd>{{ h.input_field('sbb_label', form.sbb_label, size=40) }}
+    <div class="message message-configure">This is the label for the
+    submit button.<br/>
+    Considering the following example:<pre>{% filter escape -%}
+    <label for="sbb" style="display: none">Submit search form</label>
+    {%- endfilter %}</pre>
+    You would put <b>Submit search form</b> in the box</div></dd>
+    <dt>Submit Button Value</dt>
+    <dd>{{ h.input_field('submit_button_value', form.submit_button_value, size=40) }}
+    <div class="message message-configure">This is the string for the submit
+      button.<br/>
+      Consider the following example:<pre>{% filter escape -%}
+      <input type="submit" name="sa" value="Search" id="sbb"></input>
+      {%- endfilter %}</pre>
+      You'd put <b>Search</b> in the box.</div></dd>
+    <dt>SS0 Label</dt>
+    <dd>{{ h.input_field('ss0_label', form.ss0_label, size=40) }}
+    <div class="message message-configure">This is the title attribute of
+      the label html tag for the ss0 input field.<br/>
+      Considering the following example:<pre>{% filter escape -%}
+      <input type="radio" name="sitesearch" value="" id="ss0"></input>
+<label for="ss0" title="Search the Web"><font size="-1" color="#ffffff">Web</font></label></td>
+      {%- endfilter %}</pre>
+      You would put <b>Search the Web</b> in the box</div></dd>
+    <dt>SS1 Label</dt>
+    <dd>{{ h.input_field('ss1_label', form.ss1_label, size=40) }}
+    <div class="message message-configure">This is the title attribute of the
+      label html tag for the ss1 input field.<br/>
+      Considering the following example:<pre>{% filter escape -%}
+      <input type="radio" name="sitesearch" value="{{form.site_domain}}" checked id="ss1"></input>
+<label for="ss1" title="Search {{form.site_domain}}"><font size="-1" color="#ffffff">{{form.site_domain}}</font></label></td>
+      {%- endfilter %}</pre>
+      In this specific case you would only add <b>Search</b> because the domain
+      will be the one you're running this TextPress instance and will be
+      added by the plugin.</div></dd>
+    <dt>{% trans "HL" %}</dt>
+    <dd>{{ h.input_field('hl', form.hl, size=4) }}
+    <div class="message message-configure">This is the language chosen on
+      the Google Adsense For Search.<br/>
+      Considering the following example:<pre>{% filter escape -%}
+      <input type="hidden" name="hl" value="en"></input>
+      {%- endfilter %}</pre>
+      You would put <b>en</b> in the box.</div></dd>
+    <dt>Blog Domain</dt>
+    <dd>{{ h.input_field('site_domain', form.site_domain or site_domain) }}
+    <div class="message message-configure">This is the domain of your
+      TextPress install.<br/>
+      Normaly you won't have to change this value as it will be entered
+      automaticaly by the plugin from the domain you're running this
+      TextPress instance.</div></dd>
+    <dt>Google Search Domain</dt>
+    <dd>{{ h.input_field('google_search_domain', form.google_search_domain) }}
+    <div class="message message-configure">This is the Google domain used
+      to submit your users search query. You will get this value from the
+      second box Google gives you to <em>copy/paste</em> the code.<br/>
+      Considering the following example:<pre>{% filter escape -%}
+      <div id="googleSearchUnitIframe"></div>
+<script type="text/javascript">
+   var googleSearchIframeName = 'googleSearchUnitIframe';
+   var googleSearchFrameWidth = 700;
+   var googleSearchFrameborder = 0 ;
+   var googleSearchDomain = 'www.google.com';
+</script>{%- endfilter %}</pre>
+      You would put <b>www.google.com</b> in the box.</div></dd>
+  </dl>
+</form>

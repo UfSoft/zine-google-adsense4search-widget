@@ -1,0 +1,43 @@
+{% extends 'widgets/base.html' %}
+{% block title %}{% endblock %}
+{% block body %}
+<br/><center>
+<form method="get" action="{{url_for('blog/index', _external=true)}}search" target="_top">
+<table border="0" bgcolor="{{ widget.bg_colour }}">
+<tr><td nowrap="nowrap" valign="top" align="left" height="32">
+<a href="http://www.google.com/">
+<img src="http://www.google.com/logos/{{ widget.google_gif }}" border="0" alt="Google" align="middle"></img></a>
+<br/>
+<input type="hidden" name="domains" value="{{widget.site_domain}}"></input>
+<label for="sbi" style="display: none">{{ widget.sbi }}</label>
+<input type="text" name="q" size="{{ widget.input_field_size }}" maxlength="255" value="" id="sbi"></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" id="ss0"></input>
+<label for="ss0" title="{{ widget.ss0_label}}"><font size="-1" color="{{ widget.font_colour }}">Web</font></label></td>
+<td>
+<input type="radio" name="sitesearch" value="{{widget.site_domain}}" checked id="ss1"></input>
+<label for="ss1" title="{{ widget.ss1_label}} {{widget.site_domain}}"><font size="-1" color="{{ widget.font_colour }}">{{widget.site_domain}}</font></label></td>
+</tr>
+</table>
+<label for="sbb" style="display: none">{{ widget.sbb_label }}</label>
+<input type="submit" name="sa" value="{{ widget.submit_button_value }}" id="sbb"></input>
+<input type="hidden" name="client" value="{{ widget.client }}"></input>
+<input type="hidden" name="forid" value="{{ widget.forid}}"></input>
+{% if widget.channel -%}
+<input type="hidden" name="channel" value="{{ widget.channel }}"></input>
+{%- endif %}
+<input type="hidden" name="ie" value="UTF-8"></input>
+<input type="hidden" name="oe" value="UTF-8"></input>
+{% if widget.safe_contents -%}
+<input type="hidden" name="safe" value="active"></input>
+{%- endif %}
+<input type="hidden" name="cof" value="{{ widget.cof }}"></input>
+<input type="hidden" name="hl" value="{{ widget.hl }}"></input>
+</td></tr></table>
+</form></center>
+{% endblock %}
